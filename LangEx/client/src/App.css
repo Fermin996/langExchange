@@ -1,0 +1,30 @@
+img {
+  width: 100%;
+}
+
+.landing {
+  position: relative;
+  background: url('./img/laptop-chatting-pattern-seamless-vector-23047129.jpg') no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  margin-bottom: -50px;
+}
+
+.lead{
+  color: black;
+}
+
+h1{
+  color: black;
+  margin-top: 15%;
+}
+
+.col-md-12{
+  background-color: white;
+}
+
+.regForm{
+  width: 50%;
+  margin: 0 auto;
+}
