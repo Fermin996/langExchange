@@ -7,12 +7,12 @@ const keys = require('../../config/keys');
 const passport = require('passport');
 
 
+
 //Loading Validation
 const validateRegisterInput = require('../../validation/register')
 const validateLoginInput = require('../../validation/login')
 
-router.post('/register', (req,res) => {
-  console.log(req.body)
+router.post('/register',  (req,res) => {
   const { errors, isValid } = validateRegisterInput(req.body);
 
   if(!isValid){
@@ -80,7 +80,7 @@ router.post('/login', (req, res) => {
               { expiresIn: 86400}, 
               (err, token) => {
                 res.json({
-                  msg:'Trew',
+                  msg:'True',
                   token: 'Bearer '+ token
                 })
             });

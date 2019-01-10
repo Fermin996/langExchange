@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios';
-import classnames from 'classnames'
+import classnames from 'classnames';
+
 
 class Register extends Component {
 
@@ -9,6 +10,7 @@ class Register extends Component {
     this.state = {
       name:'',
       email:'',
+      imageUrl:'',
       password:'',
       password2:'',
       language:'',
@@ -50,7 +52,7 @@ class Register extends Component {
 
     return (
       <div>
-        <form className="regForm" onSubmit={this.onSubmit}>
+        <form className="regForm" onSubmit={this.onSubmit} encType="multipart/form-data"> 
             <div className="form-group">
               <label>Name</label>
               <input 
@@ -148,6 +150,10 @@ class Register extends Component {
               onChange={this.onChange}
               placeholder="ex: United States" />
               {errors.country && (<div className="invalid-feedback">{errors.country}</div>)}  
+            </div>
+            <div className="form-group">
+            <label>Upload Profile Picture</label>
+            <input type="file" name="imageUrl" onChange={this.onChange} value={this.state.imageUrl} className="form-control" />
             </div>
             <button type="submit" className="btn btn-primary">Submit</button>
         </form>        

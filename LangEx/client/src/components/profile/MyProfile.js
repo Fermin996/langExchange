@@ -17,7 +17,6 @@ class MyProfile extends Component {
     .then(profile => {
       const user = profile.data;
        this.setState({user})
-       
     })
     .catch(err => {
       console.log(err.response.data ) 

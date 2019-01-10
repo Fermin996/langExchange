@@ -15,7 +15,6 @@ import logout from '../../utils/logout';
     const authLinks = (
       <div className="navbar-nav">
         <a href="localhost:3000" onClick={this.onLogoutClick} className="nav-item nav-link">Logout</a>
-        <Link className="nav-item nav-link" to="/chat">Chat</Link>
         <Link className="nav-item nav-link" to="/myProfile">Profile</Link>
         <Link className="nav-item nav-link" to="/search">Search Users</Link>
       </div>

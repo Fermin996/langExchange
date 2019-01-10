@@ -28,6 +28,7 @@ export default class ProfileEdit extends Component {
     axios
     .post('/api/profile', profileFields)
     .then(profile => {
+      console.log(profile)
       window.location.href = '/myProfile';
     })
     .catch(err => {

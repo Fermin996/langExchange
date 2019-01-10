@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 const db = require('./config/keys').mongoURI
 
 //connect to mongodb
-mongoose.connect(db)
+mongoose.connect(db, { useNewUrlParser: true })
 .then(()=> console.log('MongoDb Connected'))
 .catch(err => console.log(err))
 
@@ -26,7 +26,7 @@ app.use(passport.initialize());
 require('./config/passport')(passport);
 
 app.get('/', (req,res) => {
-  res.send('helos')
+  res.send('hello')
 });
 
 
