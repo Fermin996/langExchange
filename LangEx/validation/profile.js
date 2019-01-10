@@ -6,8 +6,6 @@ module.exports = function validateProfileInput(data){
 
   data.interests = !isEmpty(data.interests) ? data.interests: '';
 
-  console.log(data.interests)
-
   if(Validator.isEmpty(data.interests)){
     errors.interests = 'Interests field required';
   }

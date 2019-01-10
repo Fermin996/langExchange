@@ -10,7 +10,7 @@ const Profile = require('../../models/Profile');
 //Load User model
 const User = require('../../models/User');
 
-//Get current user profile
+//Get current user profile -Private
 
 router.get('/', passport.authenticate('jwt', {session:false}), (req,res) => {
   const errors = {}
@@ -36,12 +36,12 @@ router.get('/all', (req, res) => {
   .populate('user', ['name', 'country', 'imageUrl', 'language'])
   .then(profiles => {
     if(!profiles){
-      errors.noprofile = 'there aint o fukn prof';
+      errors.noprofile = 'No Profile';
       res.status(404).json(errors);
     }
     res.json(profiles)
   }) 
-  .catch(err => res.status(404).json({profile: 'there AINT O FUKeh PRahWF'})) 
+  .catch(err => res.status(404).json({profile: 'No profile'})) 
 })
 
 //get user profile - public
@@ -53,12 +53,12 @@ router.get('/user/:user_id', (req, res)=>{
   .populate('user', ['name', 'country', 'imageUrl', 'language'])  
   .then( profile =>{
       if(!profile){
-        errors.noprofile = 'there aint o fukn prof';
+        errors.noprofile = 'No Profile';
         res.status(404).json(errors);
       }
       res.json(profile)
   })
-  .catch(err => res.status(404).json({profile: 'there AINT O FUKeh PRahWF'}))
+  .catch(err => res.status(404).json({profile: 'No profile'}))
 })
 
 
@@ -74,16 +74,12 @@ router.post('/', passport.authenticate('jwt', {session:false}), (req,res) => {
   //Retrieve profile fields
   const profileFields = {};
   profileFields.user = req.user.id
-  if(req.body.location) profileFields.location = req.body.location
   if(req.body.intro) profileFields.intro = req.body.intro
   if(req.body.occupation) profileFields.occupation = req.body.occupation
   if(req.body.interests) profileFields.interests = req.body.interests
   if(req.body.age) profileFields.age = req.body.age
-  if(req.body.school) profileFields.school = req.body.school
-  if(req.body.gender) profileFields.gender = req.body.gender
 
   Profile.findOne({ user: req.user.id})
-  //.populate('user', ['name', 'country', 'imageUrl', 'language'])
   .then(profile => { 
     if(profile){
       //update

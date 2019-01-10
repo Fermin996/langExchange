@@ -7,6 +7,9 @@ module.exports = function validateRegisterInput(data){
   data.email = !isEmpty(data.email) ? data.email: '';
   data.password = !isEmpty(data.password) ? data.password: '';
   data.password2 = !isEmpty(data.password2) ? data.password2: '';
+   data.language = !isEmpty(data.language) ? data.language: '';
+  data.language2 = !isEmpty(data.language2) ? data.language2: '';
+  data.country = !isEmpty(data.country) ? data.country: '';
 
   if(!Validator.isLength(data.name, { min:3, max:30 })){
     errors.name = 'Name must be between 3 and 30 characters';
@@ -34,6 +37,18 @@ module.exports = function validateRegisterInput(data){
 
   if(!Validator.equals(data.password, data.password2)){
     errors.password2 = 'Passwords must match'
+  }
+
+  if(Validator.isEmpty(data.language)){
+    errors.language = 'Native language field required';
+  }
+
+  if(Validator.isEmpty(data.language2)){
+    errors.language2 = 'Languge of practice required';
+  }
+
+  if(Validator.isEmpty(data.country)){
+    errors.country = 'Country field required';
   }
 
   return {

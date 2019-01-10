@@ -6,33 +6,18 @@ const ProfileSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'user'
   },
-  location:{
-    type: String
-  },
   intro:{
     type:String,
     required:false
   },
   occupation:{
-    field:String,
-    title:String
+    type:String
   },
   interests:{
         type:String,
         required:true
     },
-  language:{
-    type: String,
-    required: false
-  },
-  language2:{
-    type: String,
-    required: false
-  },
-  country:String,  
-  age: Number,
-  school:String,
-  gender:String
+  age: Number
 })
 
 module.exports = Profile = mongoose.model('profile', ProfileSchema);

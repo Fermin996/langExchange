@@ -11,12 +11,8 @@ const passport = require('passport');
 const validateRegisterInput = require('../../validation/register')
 const validateLoginInput = require('../../validation/login')
 
-router.get('/test', (req,res) => {
-  res.json({msg: 'FAWKin Werks'})
-})
-
 router.post('/register', (req,res) => {
-
+  console.log(req.body)
   const { errors, isValid } = validateRegisterInput(req.body);
 
   if(!isValid){
@@ -25,16 +21,12 @@ router.post('/register', (req,res) => {
 
   User.findOne({ email:req.body.email })
   .then(user => {
+    console.log(user)
     if(user){
       errors.email = 'Email already exists'
       return res.status(400).json(errors);
     }else{
-      const newUser = new User({
-        name: req.body.name,
-        email: req.body.email,
-        password: req.body.password,
-        imageUrl: req.body.imageUrl
-      });
+      const newUser = new User({ ...req.body});
 
       bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(newUser.password, salt, (err, hash) => {
@@ -77,7 +69,10 @@ router.post('/login', (req, res) => {
             const payload = {
               id: user.id, 
               name: user.name,
-              imageUrl: user.imageUrl
+              imageUrl: user.imageUrl,
+              language: user.language,
+              language2: user.language2,
+              country: user.country
             }
 
             jwt.sign(payload, 

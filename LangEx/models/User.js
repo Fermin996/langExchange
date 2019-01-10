@@ -16,8 +16,24 @@ const UserSchema = new Schema({
   },
   imageUrl:{
     type:String,
-    default: "https://cdn2.vectorstock.com/i/1000x1000/19/01/user-icon-male-person-symbol-profile-avatar-sign-vector-18991901.jpg"
+    default: "https://www.euc.ac.cy/images/media/imageoriginal/icon-user-default.png"
+  },
+  language:{
+    type: String,
+    required: true
   }
+  ,
+  language2:{
+    type: String,
+    required: true
+  },
+  country:String,
+  friends: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'user'
+    }
+  ]
 })
 
 module.exports = User = mongoose.model('user', UserSchema);
